@@ -31,7 +31,7 @@ const App = () => {
 
     if (input.trim() === '') {
       console.error('Input cannot bee empty');
-      setErrorMessage('Input cannot be empty');
+      setErrorMessage('Input cannot be empty*');
       return;
     }
     setErrorMessage('');
@@ -72,7 +72,7 @@ const App = () => {
     <main className="todo-container">
       <section className="todo-content">
         <div className="todo-box">
-          <h1 id="todo-h1">To-Do list</h1>
+          <h1 id="todo-h1">To-Do list 📋📝</h1>
 
           <form onSubmit={handleSubmit}>
             <div className="todo-input-container">
@@ -88,27 +88,31 @@ const App = () => {
             </div>
           </form>
 
-          {errorMessage && <p>{errorMessage}</p>}
+          {errorMessage && <p id="error-msg">{errorMessage}</p>}
 
-          {tasks.map((task, index) => (
-            <div key={index} className="todo-list-container">
-              <div className="todo-list-content">
-                <input type="checkbox" id="todo-checkbox" />
-                <p id="todo-list-text">{task.text}</p>
-              </div>
+          {tasks.length === 0 ? (
+            <p>Looks like there's no list, try to add one. 😇</p>
+          ) : (
+            tasks.map((task, index) => (
+              <div key={index} className="todo-list-container">
+                <div className="todo-list-content">
+                  <input type="checkbox" id="todo-checkbox" />
+                  <p id="todo-list-text">{task.text}</p>
+                </div>
 
-              <div className="todo-list-delete">
-                <img
-                  src={Delete}
-                  onClick={() => handleDelete(task.id)}
-                  id="todo-delete"
-                />
+                <div className="todo-list-delete">
+                  <img
+                    src={Delete}
+                    onClick={() => handleDelete(task.id)}
+                    id="todo-delete"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
 
           <div className="copyright">
-            <h6>Copyright &copy; Eunice Pague.</h6>
+            <h5>Copyright &copy; 2024 Eunice Pague. 💁🏻</h5>
           </div>
         </div>
       </section>
